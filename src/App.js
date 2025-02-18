@@ -6,6 +6,8 @@ const App = () => {
   const [team2name, setTeam2name] = useState("");
   const [team1score, setTeam1score] = useState(0);
   const [team2score, setTeam2score] = useState(0);
+  const [team1caughtscore, setTeam1caughtscore] = useState(0);
+  const [team2caughtscore, setTeam2caughtscore] = useState(0);
   const [start, setStart] = useState(false);
 
   const team1handler = () => {
@@ -14,6 +16,14 @@ const App = () => {
 
   const team2handler = () => {
     setTeam2score(team2score + 1);
+  };
+
+  const team1caughtscorehandler = () => {
+    setTeam1caughtscore(team1caughtscore + 1);
+  };
+
+  const team2caughtscorehandler = () => {
+    setTeam2caughtscore(team2caughtscore + 1);
   };
 
   const startHandler = () => {
@@ -67,6 +77,42 @@ const App = () => {
                 <button onClick={team2handler}>
                   Increase {team2name} Score
                 </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      )}
+      {start && (
+        <table className="score-table">
+          <thead>
+            <tr>
+              <th>{team1name} Caught Score</th>
+              <th>{team2name} Caught Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="score">{team1caughtscore}</td>
+              <td className="score">{team2caughtscore}</td>
+            </tr>
+            <tr>
+              <td>
+                <button onClick={team1caughtscorehandler}>
+                  Increase {team1name} Score
+                </button>
+              </td>
+              <td>
+                <button onClick={team2caughtscorehandler}>
+                  Increase {team2name} Score
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                {team1name} Total Score: {team1score + team1caughtscore}
+              </td>
+              <td>
+                {team2name} Total Score: {team2score + team2caughtscore}
               </td>
             </tr>
           </tbody>
